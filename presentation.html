@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogiTrack Part 2 - Présentation Canva Interactive</title>
+  
+  <!-- Google Fonts: Poppins & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --primary-subtle: #eff6ff;
+      --accent: #2563eb;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(30, 64, 175, 0.08);
+      --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.07);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top Navigation Toolbar */
+    header.toolbar {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #ffffff;
+    }
+
+    .badge-simplon {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      background: #334155;
+      color: #ffffff;
+      border: 1px solid #475569;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #475569;
+      color: #ffffff;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    /* Main Presentation Container */
+    main.viewport {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    /* 16:9 Slide Frame */
+    .slide-stage {
+      width: 1280px;
+      height: 720px;
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      padding: 40px;
+      box-sizing: border-box;
+      transform-origin: center center;
+      transition: opacity 0.3s ease;
+    }
+
+    .slide-stage.active {
+      display: flex;
+    }
+
+    /* Header Bar inside Slide */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .slide-header-content {
+      max-width: 80%;
+    }
+
+    .slide-category {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .slide-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .simplon-logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      padding: 8px 14px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .simplon-logo-badge span.red {
+      color: #ef4444;
+      font-weight: 800;
+    }
+
+    /* Slide Body Content */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    /* Footer in Slide */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* Common Card Styling */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Grids & Layouts */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* Interactive Screenshot Placeholder */
+    .screenshot-dropzone {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      background: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .screenshot-dropzone:hover {
+      background: #e2e8f0;
+      border-color: var(--accent);
+    }
+
+    .screenshot-dropzone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .dropzone-label {
+      text-align: center;
+      color: var(--text-muted);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .dropzone-label i {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    /* Table Styles */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .table-custom th {
+      background: #1e293b;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-align: left;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+    }
+
+    .table-custom td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      vertical-align: top;
+    }
+
+    .table-custom tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge-role {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .role-admin { background: #fee2e2; color: #991b1b; }
+    .role-manager { background: #dbeafe; color: #1e40af; }
+    .role-agent { background: #dcfce7; color: #166534; }
+
+    /* Flow Diagrams */
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 12px;
+    }
+
+    .flow-card {
+      flex: 1;
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      position: relative;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Presenter Notes Drawer */
+    .notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 16px 24px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      z-index: 90;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      color: var(--primary-light);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Bottom Control Bar */
+    .slide-nav-bar {
+      background: #1e293b;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      border-top: 1px solid #334155;
+    }
+
+    .slide-counter {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    [contenteditable="true"] {
+      outline: 2px dashed var(--accent);
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    /* Media Print styling */
+    @media print {
+      header.toolbar, .slide-nav-bar, .notes-drawer { display: none !important; }
+      body { background: white; overflow: visible; height: auto; }
+      main.viewport { padding: 0; background: white; }
+      .slide-stage { display: flex !important; page-break-after: always; width: 100vw; height: 56.25vw; box-shadow: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="toolbar">
+    <div class="toolbar-brand">
+      <i data-lucide="presentation"></i>
+      <span>LogiTrack Part 2</span>
+      <span class="badge-simplon">Simplon Maghreb</span>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" id="btn-edit" onclick="toggleEditMode()">
+        <i data-lucide="edit-3"></i> Mode Édition
+      </button>
+      <button class="btn" id="btn-notes" onclick="toggleNotes()">
+        <i data-lucide="file-text"></i> Notes d'oral
+      </button>
+      <button class="btn" onclick="window.print()">
+        <i data-lucide="printer"></i> Imprimer / PDF
+      </button>
+      <button class="btn btn-primary" onclick="toggleFullscreen()">
+        <i data-lucide="maximize"></i> Plein écran
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport -->
+  <main class="viewport">
+
+    <!-- SLIDE 1: Cover Page -->
+    <div class="slide-stage active" id="slide-1">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="award"></i> Soutenance de Projet Individuel</span>
+        </div>
+        <div class="simplon-logo-badge">
+          <span class="red">SIMPLON</span> MAGHREB
+        </div>
+      </div>
+      <div class="slide-body grid-2">
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <h1 class="slide-title" style="font-size: 2.5rem; margin-bottom: 12px; color: var(--primary);">
+            LogiTrack Part 2
+          </h1>
+          <p style="font-size: 1.25rem; font-weight: 500; color: #334155; margin-bottom: 24px; line-height: 1.4;">
+            Sécurisation de l'API avec Spring Security & Développement du Frontend React
+          </p>
+          <div style="background: white; border-left: 4px solid var(--accent); padding: 16px; border-radius: 0 12px 12px 0; box-shadow: var(--shadow-sm);">
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Présentateur</p>
+            <p style="font-size: 1.1rem; font-weight: 700; color: var(--text-dark);">Ayoub Hadi</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <div class="card" style="width: 100%; height: 80%; background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 28px;">
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <i data-lucide="shield-check" style="width: 36px; height: 36px; color: #1e40af; margin-bottom: 8px;"></i>
+              <strong style="font-size: 0.9rem;">Spring Security</strong>
+            </div>
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <i data-lucide="code-2" style="width: 36px; height: 36px; color: #2563eb; margin-bottom: 8px;"></i>
+              <strong style="font-size: 0.9rem;">React 19 SPA</strong>
+            </div>
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <i data-lucide="key-round" style="width: 36px; height: 36px; color: #0284c7; margin-bottom: 8px;"></i>
+              <strong style="font-size: 0.9rem;">JWT Auth</strong>
+            </div>
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <i data-lucide="database" style="width: 36px; height: 36px; color: #0369a1; margin-bottom: 8px;"></i>
+              <strong style="font-size: 0.9rem;">MySQL DB</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 1 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Presentation Outline -->
+    <div class="slide-stage" id="slide-2">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="list"></i> Sommaire</span>
+          <h2 class="slide-title">Plan de la Présentation</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3 full-width">
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">1</div>
+            <div><strong>Contexte</strong><p class="card-desc">Origines et enjeux du projet</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">2</div>
+            <div><strong>Objectifs</strong><p class="card-desc">Piliers techniques visés</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">3</div>
+            <div><strong>Technologies</strong><p class="card-desc">Stack Backend & Frontend</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">4</div>
+            <div><strong>Architecture</strong><p class="card-desc">Diagramme des composants</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">5</div>
+            <div><strong>Authentification JWT</strong><p class="card-desc">Flux de connexion sécurisé</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">6</div>
+            <div><strong>Gestion des Rôles</strong><p class="card-desc">Matrice de droits RBAC</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">7</div>
+            <div><strong>Features Backend</strong><p class="card-desc">Endpoints et sécurité Spring</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">8</div>
+            <div><strong>Features Frontend</strong><p class="card-desc">Interface utilisateur React</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">9</div>
+            <div><strong>Tableau de Bord</strong><p class="card-desc">Vue analytique globale</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center;">
+            <div style="background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">10</div>
+            <div><strong>Démonstration</strong><p class="card-desc">Captures & démo live</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 14px; align-items: center; grid-column: span 2;">
+            <div style="background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">11</div>
+            <div><strong>Conclusion & Bilan</strong><p class="card-desc">Enseignements et clôture</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 2 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Context -->
+    <div class="slide-stage" id="slide-3">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="history"></i> Origines</span>
+          <h2 class="slide-title">Contexte du Projet LogiTrack</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body">
+        <div class="flow-steps">
+          <div class="flow-card">
+            <div class="card-icon"><i data-lucide="server"></i></div>
+            <strong style="font-size: 0.95rem;">1. API Initiale</strong>
+            <p class="card-desc" style="font-size: 0.8rem; margin-top: 6px;">Existence d'une API REST LogiTrack fonctionnelle mais non protégée.</p>
+          </div>
+          <div class="flow-arrow"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-card">
+            <div class="card-icon"><i data-lucide="shield"></i></div>
+            <strong style="font-size: 0.95rem;">2. Spring Security</strong>
+            <p class="card-desc" style="font-size: 0.8rem; margin-top: 6px;">Verrouillage des endpoints et filtre de sécurité.</p>
+          </div>
+          <div class="flow-arrow"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-card">
+            <div class="card-icon"><i data-lucide="key"></i></div>
+            <strong style="font-size: 0.95rem;">3. Authentification JWT</strong>
+            <p class="card-desc" style="font-size: 0.8rem; margin-top: 6px;">Implémentation de jetons d'accès autonomes (Stateless).</p>
+          </div>
+          <div class="flow-arrow"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-card">
+            <div class="card-icon"><i data-lucide="users"></i></div>
+            <strong style="font-size: 0.95rem;">4. Rôles & Permissions</strong>
+            <p class="card-desc" style="font-size: 0.8rem; margin-top: 6px;">Contrôle d'accès fin (ADMIN, MANAGER, AGENT).</p>
+          </div>
+          <div class="flow-arrow"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-card" style="border-color: var(--accent); background: var(--primary-subtle);">
+            <div class="card-icon" style="background: var(--accent); color: white;"><i data-lucide="layout"></i></div>
+            <strong style="font-size: 0.95rem; color: var(--primary);">5. Frontend React</strong>
+            <p class="card-desc" style="font-size: 0.8rem; margin-top: 6px;">Client React 19 pour consommer l'API de façon sécurisée.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 3 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Objectives -->
+    <div class="slide-stage" id="slide-4">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="target"></i> Cap Technique</span>
+          <h2 class="slide-title">Objectifs Clés du Projet</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3 full-width">
+          <div class="card">
+            <div class="card-icon"><i data-lucide="lock"></i></div>
+            <h3 class="card-title">Sécuriser l'API Backend</h3>
+            <p class="card-desc">Protéger l'intégralité des routes REST sensibles contre les requêtes non autorisées avec Spring Security.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="user-check"></i></div>
+            <h3 class="card-title">Authentifier via JWT</h3>
+            <p class="card-desc">Délivrer et vérifier des jetons cryptographiques signés lors du Login pour un mode sans état.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="shield-alert"></i></div>
+            <h3 class="card-title">Gérer les Rôles (RBAC)</h3>
+            <p class="card-desc">Restreindre les accès métier selon le rôle attribué à l'utilisateur (ADMIN, MANAGER, AGENT).</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="monitor"></i></div>
+            <h3 class="card-title">Développer l'Interface React</h3>
+            <p class="card-desc">Créer une SPA ergonomique, fluide et réactive avec React 19, Vite et Material UI.</p>
+          </div>
+          <div class="card" style="grid-column: span 2;">
+            <div class="card-icon"><i data-lucide="network"></i></div>
+            <h3 class="card-title">Connecter le Frontend à l'API</h3>
+            <p class="card-desc">Automatiser l'envoi du jeton JWT via des intercepteurs Axios et sécuriser la gestion des erreurs HTTP (401/403).</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 4 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Technologies -->
+    <div class="slide-stage" id="slide-5">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="cpu"></i> Stack Technique</span>
+          <h2 class="slide-title">Technologies Utilisées</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-3 full-width">
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--primary); font-family: 'Poppins', sans-serif; font-weight: 700;">
+            <i data-lucide="server"></i> Backend
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem;">
+            <li><strong>Java & Spring Boot</strong></li>
+            <li><strong>Spring Security</strong></li>
+            <li><strong>JSON Web Token (JWT)</strong></li>
+            <li><strong>Spring Data JPA</strong></li>
+            <li><strong>MySQL Database</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--accent); font-family: 'Poppins', sans-serif; font-weight: 700;">
+            <i data-lucide="layout"></i> Frontend
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem;">
+            <li><strong>React 19 + Vite</strong></li>
+            <li><strong>React Router DOM</strong></li>
+            <li><strong>Axios (Intercepteurs)</strong></li>
+            <li><strong>React Hook Form + Yup</strong></li>
+            <li><strong>Material UI & JavaScript ES6+</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: #0284c7; font-family: 'Poppins', sans-serif; font-weight: 700;">
+            <i data-lucide="wrench"></i> Outils & Versioning
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem;">
+            <li><strong>Git & GitHub</strong></li>
+            <li><strong>REST API Client (Postman)</strong></li>
+            <li><strong>npm / Node.js</strong></li>
+            <li><strong>ESLint & Vite HMR</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 5 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Architecture -->
+    <div class="slide-stage" id="slide-6">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="git-branch"></i> Workflow</span>
+          <h2 class="slide-title">Architecture Globale de la Solution</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+        <div class="flow-steps">
+          <div class="flow-card">
+            <i data-lucide="user" style="color: var(--primary); margin-bottom: 8px;"></i>
+            <strong style="display: block;">Utilisateur</strong>
+            <span class="card-desc">Navigateur Web</span>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="flow-card" style="border-color: var(--accent);">
+            <i data-lucide="code" style="color: var(--accent); margin-bottom: 8px;"></i>
+            <strong style="display: block;">Frontend React</strong>
+            <span class="card-desc">SPA (Vite / MUI)</span>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="flow-card" style="background: #f0fdf4; border-color: #86efac;">
+            <i data-lucide="shield-check" style="color: #166534; margin-bottom: 8px;"></i>
+            <strong style="display: block;">Axios + JWT Header</strong>
+            <span class="card-desc">Bearer Token</span>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="flow-card" style="border-color: var(--primary);">
+            <i data-lucide="server" style="color: var(--primary); margin-bottom: 8px;"></i>
+            <strong style="display: block;">Spring Boot API</strong>
+            <span class="card-desc">Spring Security</span>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="flow-card">
+            <i data-lucide="database" style="color: #0284c7; margin-bottom: 8px;"></i>
+            <strong style="display: block;">MySQL Database</strong>
+            <span class="card-desc">Persistance Data</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 6 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: JWT Authentication -->
+    <div class="slide-stage" id="slide-7">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="key"></i> Authentification</span>
+          <h2 class="slide-title">Flux d'Authentification JWT</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3 full-width">
+          <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700;">1</div>
+            <div><strong>Register / Inscription</strong><p class="card-desc">Création du compte utilisateur via le formulaire React Hook Form.</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700;">2</div>
+            <div><strong>Login / Connexion</strong><p class="card-desc">Envoi des identifiants au REST Endpoint <code>/auth/login</code>.</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700;">3</div>
+            <div><strong>JWT Généré</strong><p class="card-desc">Le backend Spring Security génère un token HMAC/RSA signé.</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700;">4</div>
+            <div><strong>JWT Sauvegardé</strong><p class="card-desc">Stockage local dans l'application React (State / LocalStorage).</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700;">5</div>
+            <div><strong>Axios Header</strong><p class="card-desc">Injection automatique du header <code>Authorization: Bearer &lt;token&gt;</code>.</p></div>
+          </div>
+          <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700;">6</div>
+            <div><strong>Requêtes Sécurisées</strong><p class="card-desc">Accès autorisé aux ressources protégées du serveur.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 7 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Role Management -->
+    <div class="slide-stage" id="slide-8">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="shield-alert"></i> Droits d'Accès</span>
+          <h2 class="slide-title">Gestion des Rôles (RBAC)</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Rôle</th>
+              <th>Périmètre & Droits d'Accès</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-role role-admin">ADMIN</span></td>
+              <td>Accès complet à la plateforme, administration des utilisateurs et des rôles, accès aux métriques globales et droit de suppression.</td>
+            </tr>
+            <tr>
+              <td><span class="badge-role role-manager">MANAGER</span></td>
+              <td>Gestion opérationnelle complète des Clients, Produits et Commandes. Consultation du Tableau de bord et alertes de Stock Faible.</td>
+            </tr>
+            <tr>
+              <td><span class="badge-role role-agent">AGENT</span></td>
+              <td>Consultation des fiches clients, catalogue produits et commandes. Mise à jour du statut d'avancement des commandes (Livraison).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 8 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: Backend Features -->
+    <div class="slide-stage" id="slide-9">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="server"></i> Backend</span>
+          <h2 class="slide-title">Fonctionnalités Backend Spring Boot</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-4 full-width">
+        <div class="card"><div class="card-icon"><i data-lucide="user-plus"></i></div><strong>Authentication</strong><p class="card-desc">Endpoints Register & Login</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="database"></i></div><strong>User Entity</strong><p class="card-desc">Modèle JPA & Relations</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="shield"></i></div><strong>Spring Security</strong><p class="card-desc">SecurityFilterChain</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="key"></i></div><strong>JWT Provider</strong><p class="card-desc">Génération & Validation</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="check-square"></i></div><strong>Role Authorization</strong><p class="card-desc">Annotations @PreAuthorize</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="lock"></i></div><strong>Protected Endpoints</strong><p class="card-desc">Contrôle d'accès strict</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="layers"></i></div><strong>Service Layer</strong><p class="card-desc">Logique métier isolée</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="alert-circle"></i></div><strong>Exception Handling</strong><p class="card-desc">Gestion centralisée 401/403</p></div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 9 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: Frontend Features -->
+    <div class="slide-stage" id="slide-10">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="layout"></i> Frontend</span>
+          <h2 class="slide-title">Fonctionnalités Frontend React</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-4 full-width">
+        <div class="card"><div class="card-icon"><i data-lucide="log-in"></i></div><strong>Login & Register</strong><p class="card-desc">Interfaces d'authentification</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="bar-chart-3"></i></div><strong>Dashboard</strong><p class="card-desc">Widgets de statistiques</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="users"></i></div><strong>Clients</strong><p class="card-desc">Gestion & Fiches clients</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="package"></i></div><strong>Produits</strong><p class="card-desc">Stock & Catalogues</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="shopping-cart"></i></div><strong>Commandes</strong><p class="card-desc">Suivi et statut de livraison</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="arrow-left-right"></i></div><strong>Pagination</strong><p class="card-desc">Navigation dans les données</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="search"></i></div><strong>Recherche & Filtres</strong><p class="card-desc">Filtrage instantané</p></div>
+        <div class="card"><div class="card-icon"><i data-lucide="check-circle-2"></i></div><strong>Form Validation</strong><p class="card-desc">React Hook Form + Yup</p></div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 10 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: Frontend Security -->
+    <div class="slide-stage" id="slide-11">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="shield-check"></i> Sécurité Client</span>
+          <h2 class="slide-title">Sécurité & Routage React</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-2">
+        <div class="card" style="display: flex; flex-direction: column; justify-content: center;">
+          <h3 class="card-title" style="margin-bottom: 12px;"><i data-lucide="refresh-cw"></i> Intercepteurs Axios</h3>
+          <div style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
+            <p><strong>1. Request Interceptor :</strong> Injecte le header <code>Authorization: Bearer &lt;token&gt;</code> dans chaque requête HTTP sortante.</p>
+            <br>
+            <p><strong>2. Response Interceptor :</strong> Intercepte automatiquement les erreurs <code>401 Unauthorized</code> pour réinitialiser la session (Logout) et rediriger vers la page Login.</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card" style="border-left: 4px solid var(--accent);">
+            <h4 style="font-family: 'Poppins'; font-size: 1rem; color: var(--primary); margin-bottom: 4px;">ProtectedRoute</h4>
+            <p class="card-desc">Composant de garde vérifiant la présence d'une session valide avant d'autoriser l'accès aux routes privées.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid #10b981;">
+            <h4 style="font-family: 'Poppins'; font-size: 1rem; color: #166534; margin-bottom: 4px;">RoleGuard</h4>
+            <p class="card-desc">Composant de contrôle fin masquant ou restreignant l'accès aux éléments d'interface selon le rôle de l'utilisateur (ADMIN/MANAGER/AGENT).</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 11 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: Dashboard -->
+    <div class="slide-stage" id="slide-12">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="bar-chart-2"></i> Vue Métier</span>
+          <h2 class="slide-title">Tableau de Bord</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 14px;">
+        <div class="screenshot-dropzone" onclick="triggerFileUpload('img-dashboard')">
+          <img id="img-dashboard" src="" style="display: none;">
+          <div class="dropzone-label">
+            <i data-lucide="image"></i>
+            <p><strong>Insérer la capture d'écran du Tableau de bord</strong></p>
+            <span style="font-size: 0.8rem;">Cliquez ou glissez-déposez votre capture ici</span>
+          </div>
+        </div>
+        <div class="grid-5" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+          <div class="card" style="padding: 10px; text-align: center;"><span style="font-size: 0.75rem; color: var(--text-muted);">Clients</span><strong style="display: block; font-size: 1rem;">Nombre de clients</strong></div>
+          <div class="card" style="padding: 10px; text-align: center;"><span style="font-size: 0.75rem; color: var(--text-muted);">Produits</span><strong style="display: block; font-size: 1rem;">Nombre de produits</strong></div>
+          <div class="card" style="padding: 10px; text-align: center;"><span style="font-size: 0.75rem; color: var(--text-muted);">Commandes</span><strong style="display: block; font-size: 1rem;">Nombre de commandes</strong></div>
+          <div class="card" style="padding: 10px; text-align: center; border-color: #fde68a; background: #fffbeb;"><span style="font-size: 0.75rem; color: #b45309;">Stock Alert</span><strong style="display: block; font-size: 1rem; color: #92400e;">Stock faible</strong></div>
+          <div class="card" style="padding: 10px; text-align: center;"><span style="font-size: 0.75rem; color: var(--text-muted);">Historique</span><strong style="display: block; font-size: 1rem;">Commandes récentes</strong></div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 12 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: Clients Module -->
+    <div class="slide-stage" id="slide-13">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="users"></i> Module Métier</span>
+          <h2 class="slide-title">Module Clients</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-2">
+        <div class="screenshot-dropzone" onclick="triggerFileUpload('img-clients')">
+          <img id="img-clients" src="" style="display: none;">
+          <div class="dropzone-label">
+            <i data-lucide="image"></i>
+            <p><strong>Capture d'écran Module Clients</strong></p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 12px;">
+          <div class="card"><i data-lucide="list"></i> <strong>Liste</strong> : Tableau récapitulatif des clients</div>
+          <div class="card"><i data-lucide="user-plus"></i> <strong>Ajouter</strong> : Modal / Formulaire d'ajout</div>
+          <div class="card"><i data-lucide="edit"></i> <strong>Modifier</strong> : Édition des fiches clients</div>
+          <div class="card"><i data-lucide="trash-2"></i> <strong>Supprimer</strong> : Action sécurisée ADMIN</div>
+          <div class="card"><i data-lucide="eye"></i> <strong>Détails</strong> : Consultation détaillée</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 13 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: Products Module -->
+    <div class="slide-stage" id="slide-14">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="package"></i> Module Métier</span>
+          <h2 class="slide-title">Module Produits</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-2">
+        <div class="screenshot-dropzone" onclick="triggerFileUpload('img-products')">
+          <img id="img-products" src="" style="display: none;">
+          <div class="dropzone-label">
+            <i data-lucide="image"></i>
+            <p><strong>Capture d'écran Module Produits</strong></p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 12px;">
+          <div class="card"><i data-lucide="database"></i> <strong>CRUD</strong> : Gestion complète de l'inventaire</div>
+          <div class="card"><i data-lucide="search"></i> <strong>Recherche</strong> : Filtrage instantané par nom</div>
+          <div class="card"><i data-lucide="filter"></i> <strong>Filtrage</strong> : Tri par catégorie de produits</div>
+          <div class="card" style="border-color: #fde68a; background: #fffbeb;"><i data-lucide="alert-triangle" style="color: #d97706;"></i> <strong style="color: #b45309;">Stock Faible</strong> : Alertes de réapprovisionnement</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 14 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: Orders Module -->
+    <div class="slide-stage" id="slide-15">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="shopping-cart"></i> Module Métier</span>
+          <h2 class="slide-title">Module Commandes</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-2">
+        <div class="screenshot-dropzone" onclick="triggerFileUpload('img-orders')">
+          <img id="img-orders" src="" style="display: none;">
+          <div class="dropzone-label">
+            <i data-lucide="image"></i>
+            <p><strong>Capture d'écran Module Commandes</strong></p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 10px;">
+          <div class="card"><i data-lucide="plus-circle"></i> <strong>Création</strong> : Enregistrement de nouvelle commande</div>
+          <div class="card"><i data-lucide="box"></i> <strong>Ajout de produits</strong> : Sélection et quantités</div>
+          <div class="card"><i data-lucide="truck"></i> <strong>Statut</strong> : Suivi (En attente, Expédiée, Livrée)</div>
+          <div class="card"><i data-lucide="filter"></i> <strong>Filtrage</strong> : Tri par statut de livraison</div>
+          <div class="card"><i data-lucide="file-text"></i> <strong>Consultation</strong> : Détail et facturation</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 15 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: Demonstration -->
+    <div class="slide-stage" id="slide-16">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="grid"></i> Galerie Captures</span>
+          <h2 class="slide-title">Démonstration & Interfaces</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3 full-width" style="grid-template-rows: repeat(3, 1fr); gap: 10px;">
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-1')"><img id="img-demo-1" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">1. Login</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-2')"><img id="img-demo-2" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">2. Register</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-3')"><img id="img-demo-3" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">3. Dashboard</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-4')"><img id="img-demo-4" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">4. Clients</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-5')"><img id="img-demo-5" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">5. Produits</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-6')"><img id="img-demo-6" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">6. Commandes</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-7')"><img id="img-demo-7" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">7. Utilisateurs</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-8')"><img id="img-demo-8" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">8. Profil</span></div>
+          <div class="screenshot-dropzone" style="min-height: 120px;" onclick="triggerFileUpload('img-demo-9')"><img id="img-demo-9" src="" style="display:none;"><span style="font-size: 0.8rem; font-weight:700;">9. Access Denied</span></div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 16 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 17: Conclusion -->
+    <div class="slide-stage" id="slide-17">
+      <div class="slide-header">
+        <div class="slide-header-content">
+          <span class="slide-category"><i data-lucide="check-circle-2"></i> Bilan</span>
+          <h2 class="slide-title">Conclusion du Projet</h2>
+        </div>
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body grid-2">
+        <div class="card" style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <i data-lucide="check-square" style="color: #10b981;"></i>
+            <span>API REST entièrement sécurisée avec Spring Security</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <i data-lucide="check-square" style="color: #10b981;"></i>
+            <span>Authentification JWT sans état (Stateless Token)</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <i data-lucide="check-square" style="color: #10b981;"></i>
+            <span>Gestion des rôles et contrôle d'accès étanche</span>
+          </div>
+        </div>
+        <div class="card" style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <i data-lucide="check-square" style="color: #10b981;"></i>
+            <span>Frontend React 19 moderne, réactif et connecté</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <i data-lucide="check-square" style="color: #10b981;"></i>
+            <span>Interface utilisateur responsive et intuitive</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <i data-lucide="check-square" style="color: #10b981;"></i>
+            <span>Projet individuel mené avec succès de A à Z</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 17 / 18</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 18: Final Slide -->
+    <div class="slide-stage" id="slide-18">
+      <div class="slide-header" style="justify-content: flex-end;">
+        <div class="simplon-logo-badge"><span class="red">SIMPLON</span> MAGHREB</div>
+      </div>
+      <div class="slide-body" style="flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <i data-lucide="heart-handshake" style="width: 64px; height: 64px; color: var(--accent); margin-bottom: 20px;"></i>
+        <h1 class="slide-title" style="font-size: 3rem; color: var(--primary); margin-bottom: 12px;">Merci pour votre attention</h1>
+        <p style="font-size: 1.5rem; color: var(--text-muted); font-weight: 500; margin-bottom: 32px;">Avez-vous des questions ?</p>
+        <div class="card" style="padding: 12px 24px;">
+          <span style="font-weight: 700; color: var(--text-dark);">Ayoub Hadi</span> • Simplon Maghreb
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>LogiTrack Part 2 • Simplon Maghreb</span>
+        <span>Diapositive 18 / 18</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Presenter Notes Drawer -->
+  <div class="notes-drawer" id="notes-drawer">
+    <div class="notes-header">
+      <span><i data-lucide="mic"></i> Script d'Oral Présentateur</span>
+      <button class="btn" style="padding: 2px 8px; font-size: 0.75rem;" onclick="toggleNotes()">Fermer</button>
+    </div>
+    <p id="notes-text" style="font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;"></p>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="slide-nav-bar">
+    <button class="btn" onclick="prevSlide()"><i data-lucide="chevron-left"></i> Précédent</button>
+    <div class="slide-counter" id="slide-counter">Diapositive 1 / 18</div>
+    <button class="btn" onclick="nextSlide()">Suivant <i data-lucide="chevron-right"></i></button>
+  </footer>
+
+  <!-- Hidden File Input for Uploading Screenshots -->
+  <input type="file" id="file-uploader" accept="image/*" style="display: none;" onchange="handleFileSelected(event)">
+
+  <script>
+    // Lucide Icons Initialization
+    lucide.createIcons();
+
+    let currentSlide = 1;
+    const totalSlides = 18;
+    let targetImageId = null;
+
+    const oralScripts = {
+      1: "Bonjour à tous. Je suis Ayoub Hadi et je vais vous présenter la phase 2 du projet LogiTrack : la sécurisation de l'API avec Spring Security & JWT et le développement du Frontend React.",
+      2: "Voici notre sommaire en 11 points qui guidera notre présentation de 10 minutes.",
+      3: "Au départ, l'API REST LogiTrack existait. Nous y avons intégré Spring Security, le jeton JWT et la gestion fine des rôles avant de concevoir l'interface React.",
+      4: "Nos objectifs : sécuriser l'API, authentifier les utilisateurs, appliquer le RBAC, et offrir un client React performant et connecté.",
+      5: "Côté backend: Java, Spring Boot, Security, JWT, JPA, MySQL. Côté frontend: React 19, Vite, Axios, React Hook Form et Material UI.",
+      6: "Voici l'architecture globale: le client React communique via Axios et envoie le jeton JWT à l'API Spring Boot qui interroge MySQL.",
+      7: "Le flux JWT en 6 étapes : Inscription -> Connexion -> Génération JWT -> Stockage -> Intercepteur Axios -> Endpoints sécurisés.",
+      8: "Trois niveaux d'accès : ADMIN pour la gestion globale, MANAGER pour la gestion des clients/produits/commandes, et AGENT pour le suivi logistique.",
+      9: "Le backend intègre SecurityFilterChain, JWTFilter, annotations @PreAuthorize et gestion des erreurs de sécurité.",
+      10: "Le frontend React propose un dashboard analytique, la gestion CRUD, les filtres instantanés et la validation de formulaires.",
+      11: "La sécurité client est assurée par un intercepteur Axios pour le Bearer Token et la détection 401, couplé aux ProtectedRoute et RoleGuard.",
+      12: "Le tableau de bord regroupe les compteurs clés (clients, produits, commandes, stock faible) pour une prise de décision rapide.",
+      13: "Le module clients permet d'ajouter, modifier, consulter et supprimer les clients.",
+      14: "Le module produits permet le suivi de l'inventaire et alerte en cas de stock faible.",
+      15: "Le module commandes gère la création de paniers, la mise à jour des statuts et le filtrage logistique.",
+      16: "Voici la galerie de démonstration reprenant l'ensemble des 9 vues majeures de notre application.",
+      17: "En conclusion, nous avons livré une application Full-Stack robuste, sécurisée et répondant parfaitement aux attentes.",
+      18: "Je vous remercie pour votre attention et je suis ravi de répondre à vos questions."
+    };
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      
+      document.querySelectorAll('.slide-stage').forEach(el => el.classList.remove('active'));
+      const activeSlide = document.getElementById(`slide-${index}`);
+      if (activeSlide) activeSlide.classList.add('active');
+
+      currentSlide = index;
+      document.getElementById('slide-counter').innerText = `Diapositive ${currentSlide} / ${totalSlides}`;
+      document.getElementById('notes-text').innerText = oralScripts[currentSlide] || "";
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Toggle Notes
+    function toggleNotes() {
+      document.getElementById('notes-drawer').classList.toggle('open');
+    }
+
+    // Toggle Edit Mode
+    let isEditMode = false;
+    function toggleEditMode() {
+      isEditMode = !isEditMode;
+      const btn = document.getElementById('btn-edit');
+      btn.classList.toggle('btn-primary', isEditMode);
+      btn.innerHTML = isEditMode ? '<i data-lucide="check"></i> Mode Lecture' : '<i data-lucide="edit-3"></i> Mode Édition';
+      lucide.createIcons();
+
+      const activeSlide = document.getElementById(`slide-${currentSlide}`);
+      const editableElements = activeSlide.querySelectorAll('h1, h2, h3, p, strong, span, td, li');
+      editableElements.forEach(el => {
+        el.contentEditable = isEditMode;
+      });
+    }
+
+    // Fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    // Screenshot Upload Handling
+    function triggerFileUpload(imgId) {
+      targetImageId = imgId;
+      document.getElementById('file-uploader').click();
+    }
+
+    function handleFileSelected(event) {
+      const file = event.target.files[0];
+      if (file && targetImageId) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imgEl = document.getElementById(targetImageId);
+          imgEl.src = e.target.result;
+          imgEl.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Initial call
+    showSlide(1);
+  </script>
+</body>
+</html>
