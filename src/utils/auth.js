@@ -7,7 +7,11 @@ export function getUserRole(){
         return null;
     }
 
-    const decoded = jwtDecode(token);
+    try {
+        const decoded = jwtDecode(token);
+        const authorities = (decoded.authorities || []).map(item =>
+            typeof item === "object" ? item.authority : item
+        );
 
     if(decoded.authorities?.includes("ROLE_ADMIN")){
         return "ADMIN"
@@ -20,6 +24,10 @@ export function getUserRole(){
     }
 
     return null;
-
+} 
+catch (e) {
+        return null;
+    }
 }
+
 export default getUserRole;

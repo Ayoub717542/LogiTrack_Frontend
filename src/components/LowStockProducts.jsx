@@ -1,3 +1,4 @@
+import "../styles/LowStockProducts.css"
 function LowStockProducts({lowStockProducts}) {
     return (
         <div className="low-stock-products">

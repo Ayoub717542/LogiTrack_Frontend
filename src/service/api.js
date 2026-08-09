@@ -28,9 +28,11 @@ api.interceptors.response.use(
 
         switch (error.response.status){
         case 401:
-            toast.error("Session expired. Please login again.");
-            localStorage.removeItem("token");
-            window.location.replace("/login");
+            if (!window.location.pathname.includes("/login")) {
+        toast.error("Session expired. Please login again.");
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    }
           break;
         case 404:
           console.log("Resource not found.");

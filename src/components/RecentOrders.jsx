@@ -1,3 +1,4 @@
+import "../styles/RecentOrders.css"
 function RecentOrders({ recentOrders }) {
     return (
         <>

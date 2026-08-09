@@ -3,6 +3,7 @@ import DashboardCard from "../components/DashboardCard";
 import LowStockProducts from "../components/LowStockProducts";
 import RecentOrders from "../components/RecentOrders";
 import api from "../service/api";
+import "../styles/Dashboard.css";
 
 
 function Dashboard() {

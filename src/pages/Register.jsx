@@ -45,22 +45,17 @@ function Register() {
             );
         }
     };
-
     return (
         <div className="auth-page">
-
             <div className="auth-card register-card">
-
                 <div className="auth-header">
                  <img src={logo} alt="LogiTrack Logo" className="auth-logo" />
                     <h1>Create account</h1>
                 </div>
-
                 <form
                     className="auth-form"
                     onSubmit={handleSubmit(handleRegister)}
                 >
-
                     <div className="form-row">
 
                         <div className="form-group">
@@ -115,7 +110,6 @@ function Register() {
                                 }
                             })}
                         />
-
                         {errors.userEmail && (
                             <span className="field-error">
                                 {errors.userEmail.message}
@@ -137,14 +131,12 @@ function Register() {
                                 }
                             })}
                         />
-
                         {errors.password && (
                             <span className="field-error">
                                 {errors.password.message}
                             </span>
                         )}
                     </div>
-
                     {registerError && (
                         <div className="auth-error">
                             {registerError}
@@ -162,7 +154,6 @@ function Register() {
 
                 <div className="auth-footer">
                     <span>Already have an account?</span>
-
                     <NavLink to="/login">
                         Sign in
                     </NavLink>

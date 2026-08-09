@@ -18,12 +18,9 @@ function Login() {
                 userEmail: data.userEmail,
                 password: data.password,
             });
-
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("userEmail", data.userEmail);
-
             navigate("/", { replace: true });
-
         } catch (error) {
             console.log(error.response?.status);
             console.log(error.response?.data);
@@ -34,21 +31,16 @@ function Login() {
             );
         }
     };
-
     return (
         <div className="auth-page">
-
             <div className="auth-card">
-
                 <div className="auth-header">
                  <img src={logo} alt="LogiTrack Logo" className="auth-logo" />
                     <h1>Login</h1>
                 </div>
                 <form className="auth-form"  onSubmit={handleSubmit(handleLogin)} >
-
                     <div className="form-group">
                         <label>Email</label>
-
                         <input
                             type="email"
                             placeholder="email12@gmail.com"
@@ -56,17 +48,14 @@ function Login() {
                                 required: "Email is required"
                             })}
                         />
-
                         {errors.userEmail && (
                             <span className="field-error">
                                 {errors.userEmail.message}
                             </span>
                         )}
                     </div>
-
                     <div className="form-group">
                         <label>Password</label>
-
                         <input
                             type="password"
                             placeholder="Enter your password"
@@ -78,32 +67,26 @@ function Login() {
                                 }
                             })}
                         />
-
                         {errors.password && (
                             <span className="field-error">
                                 {errors.password.message}
                             </span>
                         )}
                     </div>
-
                     {loginError && (
                         <div className="auth-error">
                             {loginError}
                         </div>
                     )}
-
                     <button
                         className="auth-button"
                         type="submit"
                     >
                         Login
                     </button>
-
                 </form>
-
                 <div className="auth-footer">
                     <span>Don't have an account?</span>
-
                     <NavLink to="/register">
                         Create an account
                     </NavLink>
