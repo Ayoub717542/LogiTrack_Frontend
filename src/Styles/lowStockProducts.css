@@ -1,0 +1,31 @@
+.low-stock-products {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.low-stock-products h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.low-stock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.low-stock-item:last-child {
+    border-bottom: none;
+}
+
+.low-stock-item span:first-child {
+    font-weight: 500;
+}
+
+.low-stock-item span:last-child {
+    font-weight: 600;
+}

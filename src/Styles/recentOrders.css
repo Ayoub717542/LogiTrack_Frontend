@@ -1,0 +1,31 @@
+.recent-orders {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.recent-orders h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.recent-orders table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-orders th,
+.recent-orders td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.recent-orders th {
+    font-weight: 600;
+}
+
+.recent-orders td {
+    font-size: 14px;
+}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./security/ProtectedRoute";
@@ -23,3 +24,5 @@ function App() {
 }
 
 export default App;
+=======
+>>>>>>> dashboard
