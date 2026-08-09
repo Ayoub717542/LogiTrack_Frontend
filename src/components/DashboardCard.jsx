@@ -1,5 +1,4 @@
 import "../styles/Dashboard.css"
-
 import React from "react";
 
 function DashboardCard({ title, value }) {
