@@ -12,13 +12,13 @@ export function getUserRole(){
     if(decoded.authorities?.includes("ROLE_ADMIN")){
         return "ADMIN"
 
-    }else if(decoded.authorities?.includes("Role_MANAGER")){
+    }else if(decoded.authorities?.includes("ROLE_MANAGER")){
                 return "MANAGER";
 
     } if (decoded.authorities?.includes("ROLE_AGENT")) {
         return "AGENT";
     }
-    
+
     return null;
 
 }

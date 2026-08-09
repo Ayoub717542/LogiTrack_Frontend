@@ -2,7 +2,6 @@ function RecentOrders({ recentOrders }) {
     return (
         <>
         <div className="recent-orders">
-
             <h2>Recent Orders</h2>
 
             <table>
@@ -17,7 +16,7 @@ function RecentOrders({ recentOrders }) {
                 </thead>
 
                 <tbody>
-                    {orders && orders.length > 0 ? (
+                    {recentOrders && orders.length > 0 ? (
                         recentOrders.map((order) => (
                             <tr key={order.id}>
                                 <td>{order.id}</td>
