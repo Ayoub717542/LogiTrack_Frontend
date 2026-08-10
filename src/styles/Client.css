@@ -1,5 +1,6 @@
+
 .clients-page {
-    padding: 20px;
+    padding: 30px;
 }
 
 .clients-header {
@@ -10,18 +11,18 @@
 }
 
 .clients-header h2 {
-    margin: 0;
+    color: #f97316;
 }
 
 .clients-header button {
-    padding: 8px 15px;
-    border: none;
-    background-color: #2563eb;
+    background-color: #f97316;
     color: white;
-    border-radius: 5px;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
 .clients-header button:hover {
-    background-color: #1d4ed8;
+    background-color: #ea580c;
 }

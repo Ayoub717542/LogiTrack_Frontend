@@ -36,20 +36,14 @@ api.interceptors.response.use(
         if (error.response) {
 
             switch (error.response.status) {
-
                 case 401:
-                    console.log(
-                        "401 Unauthorized:",
-                        error.config?.url
-                    );
-
+                    console.log("401 Unauthorized:",error.config?.url  );
                     if (!window.location.pathname.includes("/login")) {
                         toast.error("Session expired. Please login again.");
-
-
+                        localStorage.removeItem("token");
+                        window.location.href = "/login"; 
                     }
                     break;
-
                 case 403:
                     console.log(
                         "403 Forbidden:",

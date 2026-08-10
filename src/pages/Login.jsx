@@ -24,7 +24,6 @@ function Login() {
 
             const role = getUserRole();
             console.log("User role:", role);
-
             navigate("/", { replace: true });
         } catch (error) {
             console.log(error.response?.status);

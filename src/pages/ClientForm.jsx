@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
-import "../styles/clientForm.css";
 import api from "../service/api";
+import "../styles/ClientForm.css";
+
 
 function ClientForm() {
     const navigate = useNavigate();
