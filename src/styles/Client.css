@@ -15,6 +15,11 @@
 }
 
 .clients-header button {
+<<<<<<< HEAD
+=======
+    padding: 8px 15px;
+    border: none;
+>>>>>>> management
     background-color: #f97316;
     color: white;
     border: none;
@@ -25,4 +30,8 @@
 
 .clients-header button:hover {
     background-color: #ea580c;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> management

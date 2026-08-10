@@ -1,0 +1,27 @@
+.orders-page {
+    padding: 20px;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.orders-header h2 {
+    margin: 0;
+}
+
+.orders-header button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #f97316;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.orders-header button:hover {
+    background-color: #ea580c;
+}

@@ -1,0 +1,58 @@
+.Order-form-page {
+    padding: 20px;
+}
+
+.Order-form-page h2 {
+    margin-bottom: 20px;
+}
+
+.Order-form-page form {
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.Order-form-page label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.Order-form-page input,
+.Order-form-page select {
+    width: 100%;
+    padding: 9px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.Order-form-page input:focus,
+.Order-form-page select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.Order-form-page button {
+    padding: 8px 15px;
+    margin-top: 20px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Order-form-page button[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+}
+
+.Order-form-page button[type="button"] {
+    background-color: #6b7280;
+    color: white;
+}
+
+.Order-form-page button:hover {
+    opacity: 0.9;
+}

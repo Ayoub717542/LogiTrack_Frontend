@@ -1,0 +1,31 @@
+.Order-details {
+    padding: 20px;
+}
+
+.Order-details h2 {
+    margin-bottom: 20px;
+}
+
+.Order-details > div {
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.Order-details p {
+    margin: 10px 0;
+}
+
+.Order-details button {
+    padding: 8px 15px;
+    background-color: #f97316;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Order-details button:hover {
+    opacity: 0.9;
+}
