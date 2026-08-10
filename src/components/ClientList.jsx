@@ -23,8 +23,7 @@ function ClientList(){
 
     function handleDelete(client){
         if(!window.confirm(`Delete client ${client.nom}?`)) return;
-
-        api.delete(`/clients/${client.id}`)
+        api.delete(`/clients/deleteClient/${client.id}`)
             .then(() => {
                 toast.success("Client deleted successfully!");
                 fetchClients();
@@ -34,7 +33,6 @@ function ClientList(){
                 toast.error("Failed to delete client.");
             });
     }
-
     useEffect(()=>
         {
             fetchClients();
@@ -61,7 +59,7 @@ function ClientList(){
                         <td>
                     <button className="details-btn" onClick={() => navigate(`/clientDetails/${client.id}`)}>Details</button>
                     <button className="edit-btn" onClick={() =>  navigate(`/clientForm/${client.id}`)}><i className="fa-solid fa-pen"></i>Edit</button>
-                    <button className="delete-btn" onClick={() => handleDelete(client )}><i className="fa-solid fa-trash"></i>Delete</button>
+                    <button className="delete-btn" onClick={() => handleDelete(client)}><i className="fa-solid fa-trash"></i>Delete</button>
                   </td>
                     </tr>
                 ))}

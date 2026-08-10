@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";
 import DashboardCard from "../components/DashboardCard";
 import LowStockProducts from "../components/LowStockProducts";
 import RecentOrders from "../components/RecentOrders";
+import { useNavigate } from "react-router-dom";
 import api from "../service/api";
-import "../styles/Dashboard.css";
+import "../Styles/Dashboard.css";
 
 
 function Dashboard() {
-const [recentOrders, setRecentOrders] = useState([]);
-const [lowStockProducts, setLowStockProducts] = useState([]);
 
-    
+   
+
+const navigate = useNavigate();
+ function Logout(){
+        localStorage.clear();
+        navigate("/login", {replace: true});
+    }
+
 const [counts, setCounts] = useState({
         clients: 0,
         products: 0,
@@ -38,18 +44,11 @@ useEffect(()=>{
     }).catch((error) => console.error(error));
 },[])
 
-useEffect(() =>{
-    api.get("/commandes/recentCommandes")
-    .then((recentOrders) => {
-        setRecentOrders(recentOrders.data)
-    })
-},[])
-
 useEffect(()=>{
     Promise.all([
-    api.get("/orders/countPending"),
-    api.get("/orders/countShipped"),
-    api.get("/orders/countDelivered")
+    api.get("/commandes/countPending"),
+    api.get("/commandes/countShipped"),
+    api.get("/commandes/countDelivered")
 
     ]).then(([countPending,countShipped,countDelivered])=>{
         setOrderStatus({
@@ -61,59 +60,61 @@ useEffect(()=>{
 },[])
 
     return (
-        <div className="dashboard">
-            <section>
-                <div className="dashboard-cards">
-                    <DashboardCard
-                        title="Clients"
-                        value={counts.clients}
-                    />
+      <div className="dashboard">
+        
 
-                    <DashboardCard
-                        title="Products"
-                        value={counts.products}
-                    />
+    <section>
+        <div className="dashboard-cards">
+            <DashboardCard
+                title="Clients"
+                value={counts.clients}
+                onClick={() => navigate("/clients")}
+            />
 
-                    <DashboardCard
-                        title="Orders"
-                        value={counts.orders}
-                    />
+            <DashboardCard
+                title="Products"
+                value={counts.products}
+                onClick={()=> navigate("/products")}
+            />
 
-                </div>
-            </section>
+            <DashboardCard
+                title="Orders"
+                value={counts.orders}
+                onClick={() => navigate("/orders")}
+            />
+        </div>
+    </section>
 
-            <section>
-                <h2>Order Status</h2>
+    <section>
+        <h2>Order Status</h2>
 
-                <div className="dashboard-cards">
+        <div className="dashboard-cards">
+            <DashboardCard
+                title="Pending"
+                value={orderStatus.countPending}
+            />
 
-                    <DashboardCard
-                        title="Pending"
-                        value={orderStatus.PENDING}
-                    />
+            <DashboardCard
+                title="Shipped"
+                value={orderStatus.countShipped}
+            />
 
-                    <DashboardCard
-                        title="Shipped"
-                        value={orderStatus.SHIPPED}
-                    />
+            <DashboardCard
+                title="Delivered"
+                value={orderStatus.countDelivered}
+            />
+        </div>
+    </section>
 
-                    <DashboardCard
-                        title="Delivered"
-                        value={orderStatus.DELIVERED}
-                    />
-
-                </div>
-            </section>
-
-<div className="dashboard-bottom">
-
-    <LowStockProducts products={lowStockProducts} />
-
-    <RecentOrders orders={recentOrders} />
+    <div className="dashboard-bottom">
+        <LowStockProducts  />
+        <RecentOrders />
+         <button className="logout-btn" onClick={Logout} >
+          Logout
+        </button>
+    </div>
 
 </div>
-
-        </div>
     );
 }
 

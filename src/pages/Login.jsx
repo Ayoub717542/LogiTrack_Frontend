@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 import logo from "../assets/logo.svg";
+import getUserRole from "../utils/auth";
 function Login() {
     const {register, handleSubmit, formState: { errors } } = useForm();
 
@@ -20,6 +21,10 @@ function Login() {
             });
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("userEmail", data.userEmail);
+
+            const role = getUserRole();
+            console.log("User role:", role);
+
             navigate("/", { replace: true });
         } catch (error) {
             console.log(error.response?.status);

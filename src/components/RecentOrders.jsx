@@ -1,5 +1,19 @@
 import "../styles/RecentOrders.css"
-function RecentOrders({ recentOrders }) {
+import api from "../service/api";
+import { useEffect ,useState} from "react";
+
+function RecentOrders() {
+    const [recentOrders,setRecentOrders] = useState([]);
+    
+useEffect(() =>{
+    api.get("/commandes/recentCommandes").then((response) =>{
+                console.log(JSON.stringify(response.data.content, null, 2));
+        setRecentOrders(response.data.content);
+    }).catch((error) =>{
+        console.error(error)
+    })
+},[])
+
     return (
         <>
         <div className="recent-orders">
@@ -11,19 +25,17 @@ function RecentOrders({ recentOrders }) {
                         <th>Order ID</th>
                         <th>Client</th>
                         <th>Date</th>
-                        <th>Total</th>
                         <th>Status</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {recentOrders && orders.length > 0 ? (
+                    {recentOrders && recentOrders.length > 0 ? (
                         recentOrders.map((order) => (
                             <tr key={order.id}>
                                 <td>{order.id}</td>
-                                <td>{order.clientName}</td>
-                                <td>{order.date}</td>
-                                <td>{order.total} DH</td>
+                                <td>{order.client?.nom}</td>
+                                <td>{order.dateCommande}</td>
                                 <td>{order.statut}</td>
                             </tr>
                         ))
@@ -36,8 +48,6 @@ function RecentOrders({ recentOrders }) {
             </table>
         </div>
         </>
-      
     );
 }
-
 export default RecentOrders;

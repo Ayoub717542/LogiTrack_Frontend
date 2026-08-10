@@ -1,5 +1,19 @@
 import "../styles/LowStockProducts.css"
-function LowStockProducts({lowStockProducts}) {
+import api from "../service/api";
+import { use, useEffect ,useState} from "react";
+function LowStockProducts() {
+
+const [lowStockProducts, setLowStockProducts] = useState([]);
+
+useEffect(() =>{
+    api.get("/products/getLowStockProducts").then((res) => {
+        setLowStockProducts(res.data);
+    })
+    .catch((error) =>{
+        console.error(error)
+    })
+},[])
+
     return (
         <div className="low-stock-products">
 
@@ -8,9 +22,9 @@ function LowStockProducts({lowStockProducts}) {
             {lowStockProducts && lowStockProducts.length > 0 ? (
                 lowStockProducts.map((product) => (
                     <div className="low-stock-item" key={product.id}>
-                        <span>{product.name}</span>
+                        <span>{product.nom}</span>
                         <span>
-                            {product.stock} left
+                            {product.quantiteStock} left
                         </span>
                     </div>
                 ))

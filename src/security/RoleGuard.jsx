@@ -1,7 +1,8 @@
-import { Navigate, Outlet  } from "react-router-dom";
-import {getUserRole} from "../utils/auth";
+import { Navigate, Outlet } from "react-router-dom";
+import { getUserRole } from "../utils/auth";
 
-function RoleGuard({allowedRoles}){
+function RoleGuard({ allowedRoles }) {
+
     const role = getUserRole();
 
     if (!role) {
@@ -9,9 +10,11 @@ function RoleGuard({allowedRoles}){
     }
 
     if (!allowedRoles.includes(role)) {
-        return <Navigate to="/access-denied" replace />;
+        return <Navigate to="/" replace />;
     }
 
     return <Outlet />;
 }
-export default RoleGuard; 
+
+export default RoleGuard;
+

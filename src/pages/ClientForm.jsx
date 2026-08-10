@@ -8,18 +8,17 @@ import api from "../service/api";
 function ClientForm() {
     const navigate = useNavigate();
     const { clientId } = useParams();
-    const [editingId, setEditingId] = useState(null);
 
     const {
         register,
         handleSubmit,
-        reset
+        reset, 
+        formState:{errors}
     } = useForm();
 
     useEffect(() => {
         if (clientId) {
-            setEditingId(clientId);
-            api.get(`/clients/${clientId}`)
+            api.get(`/clients/getClientById/${clientId}`)
                 .then((response) => {
                     reset({
                         nom: response.data.nom,
@@ -35,10 +34,9 @@ function ClientForm() {
     }, [clientId, reset]);
 
     function onSubmit(data) {
-        if (editingId) {
-            api.put(`/clients/updateClient/${editingId}`, data)
+        if (clientId) {
+            api.put(`/clients/updateClient/${clientId}`, data)
                 .then(() => {
-                    setEditingId(null);
                     reset();
                     toast.success("Client updated successfully!");
                     navigate("/clients");
@@ -54,31 +52,42 @@ function ClientForm() {
                     navigate("/clients");
                 })
                 .catch((error) => {
-                    console.error(error);
-                    toast.error("An error occurred while adding the client.");
+                     console.error(error);
+                    toast.error("Something went wrong while updating the client.");
                 });
         }
     }
 
     return (
         <div className="client-form-page">
-            <h2>{editingId ? "Edit Client" : "Add Client"}</h2>
+            <h2>{clientId ? "Edit Client" : "Add Client"}</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Full Name</label>
                 <input
-                    {...register("nom")}
+                    {...register(
+                        "nom",{
+                        required:"name is required"
+                    })
+                    }
                     type="text"
                 />
+                {errors.nom && (<p className="error_message">{errors.nom.message}</p>)}
                 <label>Email</label>
                 <input
-                    {...register("email")}
+                    {...register("email",{
+                        required:"Email is required"
+                    })}
                     type="email"
                 />
+                 {errors.email && (<p className="error_message">{errors.email.message}</p>)}
                 <label>Phone</label>
                 <input
-                    {...register("telephone")}
+                    {...register("telephone",
+                        {required:"Phone number is required"}
+                    )}
                     type="text"
                 />
+                 {errors.telephone && (<p className="error_message">{errors.telephone.message}</p>)}
                 <button type="submit">
                     Save
                 </button>
