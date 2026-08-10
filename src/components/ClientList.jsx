@@ -4,15 +4,15 @@ import { toast } from "react-toastify";
 import api from "../service/api";
 
 function ClientList(){
+    
 
     const navigate = useNavigate();
     const [clients,setClients] = useState([]);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
-    const [sortOrder, setSortOrder] = useState("asc");
+
 
 
     function fetchClients(){
+
         api.get("/clients/getAllClientPagination").then(
             (response) => {
                 setClients(response.data.content); 
@@ -59,7 +59,7 @@ function ClientList(){
                         <td>{client.nom}</td>
                         <td>{client.telephone}</td>
                         <td>
-                    <button className="details-btn" onClick={() => navigate(`/clientDetails/${client.id}`)}>Details</button>
+                        <button className="details-btn" onClick={() => navigate(`/clientDetails/${client.id}`)}>Details</button>
                     <button className="edit-btn" onClick={() =>  navigate(`/clientForm/${client.id}`)}><i className="fa-solid fa-pen"></i>Edit</button>
                     <button className="delete-btn" onClick={() => handleDelete(client )}><i className="fa-solid fa-trash"></i>Delete</button>
                   </td>

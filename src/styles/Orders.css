@@ -1,19 +1,19 @@
-.clients-page {
+.orders-page {
     padding: 20px;
 }
 
-.clients-header {
+.orders-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.clients-header h2 {
+.orders-header h2 {
     margin: 0;
 }
 
-.clients-header button {
+.orders-header button {
     padding: 8px 15px;
     border: none;
     background-color: #f97316;
@@ -22,6 +22,6 @@
     cursor: pointer;
 }
 
-.clients-header button:hover {
+.orders-header button:hover {
     background-color: #ea580c;
 }
