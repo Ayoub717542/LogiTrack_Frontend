@@ -4,7 +4,7 @@ import LowStockProducts from "../components/LowStockProducts";
 import RecentOrders from "../components/RecentOrders";
 import { useNavigate } from "react-router-dom";
 import api from "../service/api";
-import "../Styles/Dashboard.css";
+import "../styles/Dashboard.css";
 
 
 function Dashboard() {

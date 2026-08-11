@@ -6,7 +6,7 @@ import {
     FaShoppingCart
 } from "react-icons/fa";
 
-import "../Styles/Sidebar.css";
+import "../styles/Sidebar.css";
 
 function Sidebar() {
     const userEmail = localStorage.getItem("userEmail");

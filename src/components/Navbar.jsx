@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
-import "../Styles/Navbar.css";
+import "../styles/Navbar.css";
 import logo from "../assets/logo.svg";
 
 function Navbar() {

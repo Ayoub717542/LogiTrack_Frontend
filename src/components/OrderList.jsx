@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "../Styles/OrdersList.css"
+import "../styles/OrdersList.css"
 import api from "../service/api";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 

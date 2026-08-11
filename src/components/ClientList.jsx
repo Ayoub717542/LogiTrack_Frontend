@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../service/api";
-import "../Styles/ClientList.css"
+import "../styles/ClientList.css"
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import {
   Button,

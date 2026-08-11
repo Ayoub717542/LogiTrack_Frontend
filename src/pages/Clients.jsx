@@ -1,6 +1,6 @@
 import ClientList from "../components/ClientList";
 import { useNavigate } from "react-router-dom";
-import "../Styles/Client.css"
+import "../styles/Client.css";
 
 function Clients() {
     const navigate = useNavigate();

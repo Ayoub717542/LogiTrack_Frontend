@@ -1,6 +1,6 @@
 
 import React from "react";
-import "../Styles/DashboardCard.css"
+import "../styles/DashboardCard.css"
 
 function DashboardCard({ title, value ,onClick }) {
     return (
