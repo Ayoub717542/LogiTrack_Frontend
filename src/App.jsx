@@ -16,6 +16,7 @@ import OrderList from "./components/OrderList";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Layout from "./components/Layout";
 
 function App() {
     return (
@@ -32,6 +33,8 @@ function App() {
                     />
                 }>
 
+                    <Route element={<Layout></Layout>}>
+                    
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/clients" element={<Clients />}/>
                     <Route path="/products" element={<Products />}/>
@@ -42,6 +45,9 @@ function App() {
                     <Route path="/orderDetails/:id?" element={<OrderDetails />}/>
                     <Route path="/clientList" element={<ClientList />}/>
                     <Route path="/orderList" element={<OrderList />}/>
+
+                    </Route>
+                    
                     
 
                     

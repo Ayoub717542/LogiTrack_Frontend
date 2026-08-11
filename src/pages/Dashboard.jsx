@@ -10,11 +10,6 @@ import "../Styles/Dashboard.css";
 function Dashboard() {
 const navigate = useNavigate();
 
- function Logout(){
-        localStorage.clear();
-        navigate("/login", {replace: true});
-    }
-
 const [counts, setCounts] = useState({
         clients: 0,
         products: 0,
@@ -114,9 +109,6 @@ useEffect(()=>{
     <div className="dashboard-bottom">
         <LowStockProducts  />
         <RecentOrders />
-         <button className="logout-btn" onClick={Logout} >
-          Logout
-        </button>
     </div>
 
 </div>
