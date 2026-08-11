@@ -1,0 +1,44 @@
+.navbar {
+    height: 60px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+}
+
+.navbar-logo h2 {
+    margin: 0;
+    color: #f97316;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-icon {
+    font-size: 24px;
+    color: #6b7280;
+}
+
+.navbar-right button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background: none;
+    color: #374151;
+
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.navbar-right button:hover {
+    color: #f97316;
+}
