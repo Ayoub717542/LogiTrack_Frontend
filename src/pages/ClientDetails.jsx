@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../styles/clientDetails.css";
+import "../styles/ClientDetails.css";
 import api from "../service/api";
 
 function ClientDetails() {

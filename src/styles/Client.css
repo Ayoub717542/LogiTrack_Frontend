@@ -13,13 +13,9 @@
 .clients-header h2 {
     color: #f97316;
 }
-
 .clients-header button {
-<<<<<<< HEAD
-=======
     padding: 8px 15px;
     border: none;
->>>>>>> management
     background-color: #f97316;
     color: white;
     border: none;
@@ -27,11 +23,7 @@
     border-radius: 6px;
     cursor: pointer;
 }
-
 .clients-header button:hover {
     background-color: #ea580c;
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> management

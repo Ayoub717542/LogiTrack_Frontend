@@ -1,58 +1,49 @@
+
 .Order-form-page {
-    padding: 20px;
+    background: #f7f7f7;
+    padding: 2rem;
+    text-align: center;
 }
 
 .Order-form-page h2 {
-    margin-bottom: 20px;
+    color: #f97316;
 }
 
 .Order-form-page form {
-    width: 400px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 6px;
+    width: 25rem;
+    margin: 2rem auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
 }
 
 .Order-form-page label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    text-align: left;
+    margin-top: 1rem;
 }
 
 .Order-form-page input,
 .Order-form-page select {
     width: 100%;
-    padding: 9px;
+    padding: 0.6rem;
+    margin-top: 0.4rem;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.Order-form-page input:focus,
-.Order-form-page select:focus {
-    outline: none;
-    border-color: #2563eb;
 }
 
 .Order-form-page button {
-    padding: 8px 15px;
-    margin-top: 20px;
-    margin-right: 8px;
+    padding: 0.6rem 1rem;
+    margin: 1rem 0.3rem 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.4rem;
     cursor: pointer;
 }
 
 .Order-form-page button[type="submit"] {
-    background-color: #2563eb;
+    background: #f97316;
     color: white;
 }
 
 .Order-form-page button[type="button"] {
-    background-color: #6b7280;
-    color: white;
-}
-
-.Order-form-page button:hover {
-    opacity: 0.9;
+    background: #ddd;
 }

@@ -1,10 +1,10 @@
 
-.Order-details {
+.client-details {
     background: #f7f7f7;
     padding: 2rem;
 }
 
-.Order-details > div {
+.client-details > div {
     width: 25rem;
     margin: 2rem auto;
     background: white;
@@ -12,20 +12,20 @@
     border-radius: 0.75rem;
 }
 
-.Order-details h2 {
+.client-details h2 {
     color: #f97316;
     margin-bottom: 1.5rem;
 }
 
-.Order-details h3 {
+.client-details h3 {
     color: #f97316;
     margin-top: 1.5rem;
 }
 
-.Order-details p {
+.client-details p {
     margin: 0.75rem 0;
 }
 
-.Order-details strong {
+.client-details strong {
     color: #333;
 }

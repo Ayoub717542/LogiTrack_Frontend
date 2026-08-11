@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../styles/orderDetails.css";
+
+import "../styles/OrderDetails.css";
 import api from "../service/api";
 
 function OrderDetails() {
@@ -23,7 +24,7 @@ function OrderDetails() {
 
     useEffect(() => {
         fetchOrderDetails();
-    }, []);
+    }, [id]);
 
     return (
         <div className="Order-details">
@@ -31,27 +32,41 @@ function OrderDetails() {
             {orderDetails && (
                 <div>
                     <h2>Order Details</h2>
+
                     <p>
                         <strong>ID:</strong> {orderDetails.id}
                     </p>
+
                     <p>
                         <strong>Date:</strong> {orderDetails.dateCommande}
                     </p>
+
                     <p>
                         <strong>Statut:</strong> {orderDetails.statut}
                     </p>
+
+                    <h3>Client</h3>
+
                     <p>
-                        <strong>Client Id:</strong> {orderDetails.client.id}
+                        <strong>Client ID:</strong>{" "}
+                        {orderDetails.client?.id}
                     </p>
+
                     <p>
-                        <strong>Client Name:</strong> {orderDetails.client.nom}
+                        <strong>Name:</strong>{" "}
+                        {orderDetails.client?.nom}
                     </p>
+
                     <p>
-                        <strong>Client Email:</strong> {orderDetails.client.email}
+                        <strong>Email:</strong>{" "}
+                        {orderDetails.client?.email}
                     </p>
+
                     <p>
-                        <strong>Client Phone:</strong> {orderDetails.client.telephone}
+                        <strong>Phone:</strong>{" "}
+                        {orderDetails.client?.telephone}
                     </p>
+
                 </div>
             )}
 

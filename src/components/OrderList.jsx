@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../Styles/OrdersList.css"
 import api from "../service/api";
+import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 
 function OrderList(){
 
@@ -27,7 +29,7 @@ function OrderList(){
                 api.delete(`/commandes/delete/${order.id}`)
                     .then(() => {
                         toast.success("order deleted successfully!");
-                        fetchorders();
+                        fetchOrders();
                     })
                     .catch((error) => {
                         console.error(error);
@@ -37,13 +39,13 @@ function OrderList(){
     return(
         <>
         <div>
-            <table>
+            <table className="order-list">
                 <thead>
                     <tr>
                     <th>id</th>
                     <th>Date</th>
                     <th>Statut</th>
-                    <th>order Id</th>
+                    <th>Client Id</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
@@ -53,11 +55,11 @@ function OrderList(){
                             <td>{order.id}</td>
                             <td>{order.dateCommande}</td>
                             <td>{order.statut}</td>
-                            <td>{order.order.id}</td>
+                            <td>{order.client?.id}</td>
                             <td>
-                    <button className="details-btn" onClick={() => navigate(`/orderDetails/${order.id}`)}>Details</button>
-                    <button className="edit-btn" onClick={() =>  navigate(`/orderForm/${order.id}`)}><i className="fa-solid fa-pen"></i>Edit</button>
-                    <button className="delete-btn" onClick={() => handleDelete(order)}><i className="fa-solid fa-trash"></i>Delete</button>
+                    <button className="details-btn" onClick={() => navigate(`/orderDetails/${order.id}`)}><FaEye /></button>
+                    <button className="edit-btn" onClick={() =>  navigate(`/orderForm/${order.id}`)}><FaEdit /></button>
+                    <button className="delete-btn" onClick={() => handleDelete(order)}><FaTrash /></button>
                             </td>
                         </tr>
                     ))}

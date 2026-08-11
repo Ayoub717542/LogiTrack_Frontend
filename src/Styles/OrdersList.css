@@ -1,25 +1,22 @@
-.client-list {
+
+.order-list {
     width: 100%;
     border-collapse: collapse;
 }
-
-.client-list th {
-    background-color: #eff0f2;
+.order-list th {
+    background-color: #f3f4f6;
     padding: 12px;
     text-align: left;
 }
-.client-list h2{
-    color: orange;
-}
-.client-list td {
+
+.order-list td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
 }
 
-.client-list tr:hover {
+.order-list tr:hover {
     background-color: #f9fafb;
 }
-
 .details-btn,
 .edit-btn,
 .delete-btn {

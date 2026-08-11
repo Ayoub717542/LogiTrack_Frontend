@@ -21,6 +21,7 @@ function Login() {
             });
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("userEmail", data.userEmail);
+            
 
             const role = getUserRole();
             console.log("User role:", role);

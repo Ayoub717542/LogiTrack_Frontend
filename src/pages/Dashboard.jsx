@@ -8,10 +8,8 @@ import "../Styles/Dashboard.css";
 
 
 function Dashboard() {
-
-   
-
 const navigate = useNavigate();
+
  function Logout(){
         localStorage.clear();
         navigate("/login", {replace: true});
@@ -26,7 +24,8 @@ const [counts, setCounts] = useState({
    const [orderStatus, setOrderStatus] = useState({
         pending: 0,
         shipped: 0,
-        delivered: 0
+        delivered: 0,
+        countCanceled: 0
     });
 
 useEffect(()=>{
@@ -48,13 +47,15 @@ useEffect(()=>{
     Promise.all([
     api.get("/commandes/countPending"),
     api.get("/commandes/countShipped"),
-    api.get("/commandes/countDelivered")
+    api.get("/commandes/countDelivered"),
+    api.get("/commandes/countCanceled")
 
-    ]).then(([countPending,countShipped,countDelivered])=>{
+    ]).then(([countPending,countShipped,countDelivered,countCanceled])=>{
         setOrderStatus({
             countPending :countPending.data,
             countShipped:countShipped.data,
-            countDelivered:countDelivered.data
+            countDelivered:countDelivered.data,
+            countCanceled:countCanceled.data
         });
     }).catch((error) => console.error(error));
 },[])
@@ -88,7 +89,7 @@ useEffect(()=>{
     <section>
         <h2>Order Status</h2>
 
-        <div className="dashboard-cards">
+        <div className="status-cards">
             <DashboardCard
                 title="Pending"
                 value={orderStatus.countPending}
@@ -102,6 +103,10 @@ useEffect(()=>{
             <DashboardCard
                 title="Delivered"
                 value={orderStatus.countDelivered}
+            />
+             <DashboardCard
+                title="CANCELLED"
+                value={orderStatus.countCanceled}
             />
         </div>
     </section>

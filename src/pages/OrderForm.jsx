@@ -8,9 +8,8 @@ import api from "../service/api";
 function OrderForm() {
 
     const navigate = useNavigate();
-    const { OrderId } = useParams();
+    const {id} = useParams();
     const [clients, setClients] = useState([]);
-
 
     const {
         register,
@@ -25,13 +24,13 @@ function OrderForm() {
     }, []);
 
     useEffect(() => {
-        if (OrderId) {
-            api.get(`/commandes/${OrderId}`)
+        if (id) {
+            api.get(`/commandes/commande/${id}`)
                 .then((response) => {
                     reset({
                         dateCommande: response.data.dateCommande,
                         statut: response.data.statut,
-                        clientId: response.data.clientId
+                        clientId: response.data.client.id
                     });
 
                 })
@@ -41,16 +40,15 @@ function OrderForm() {
                 });
         }
 
-    }, [OrderId, reset]);
-
+    }, [id, reset]);
 
     function onSubmit(data) {
-        if (OrderId) {
-            api.put(`/commandes/updateCommande/${OrderId}`, data)
+        if (id) {
+            api.put(`/commandes/updateCommande/${id}`, data)
                 .then(() => {
                     reset();
                     toast.success("Order updated successfully!");
-                    navigate("/Orders");
+                    navigate("/orders");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -63,7 +61,7 @@ function OrderForm() {
                 .then(() => {
                     reset();
                     toast.success("Order added successfully!");
-                    navigate("/Orders");
+                    navigate("/orders");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -74,7 +72,7 @@ function OrderForm() {
     return (
         <div className="Order-form-page">
             <h2>
-                {OrderId ? "Edit Order" : "Add Order"}
+                {id ? "Edit Order" : "Add Order"}
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,7 +90,6 @@ function OrderForm() {
                     <option value="DELIVERED">Delivered</option>
                     <option value="CANCELLED">Cancelled</option>
                 </select>
-
                 <label>Client ID</label>
                 <select {...register("clientId")}>
             <option value="">Select a client</option>
